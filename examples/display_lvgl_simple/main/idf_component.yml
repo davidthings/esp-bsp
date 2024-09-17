@@ -1,0 +1,5 @@
+description: BSP Display rotation example
+dependencies:
+  waveshare_esp32-s3_touch_lcd_1_69:
+    version: "*"
+    override_path: "../../../bsp/waveshare_esp32-s3_touch_lcd_1_69"

@@ -114,6 +114,9 @@ static esp_err_t read_data(esp_lcd_touch_handle_t tp)
     for (int i = 0; i < point.num; i++) {
         tp->data.coords[i].x = point.x_h << 8 | point.x_l;
         tp->data.coords[i].y = point.y_h << 8 | point.y_l;
+
+        // printf( "    Read %2d %5d %5d\n", i, tp->data.coords[i].x, tp->data.coords[i].y );
+
     }
     portEXIT_CRITICAL(&tp->data.lock);
 
@@ -125,6 +128,7 @@ static bool get_xy(esp_lcd_touch_handle_t tp, uint16_t *x, uint16_t *y, uint16_t
     portENTER_CRITICAL(&tp->data.lock);
     /* Count of points */
     *point_num = (tp->data.points > max_point_num ? max_point_num : tp->data.points);
+
     for (size_t i = 0; i < *point_num; i++) {
         x[i] = tp->data.coords[i].x;
         y[i] = tp->data.coords[i].y;
@@ -132,6 +136,8 @@ static bool get_xy(esp_lcd_touch_handle_t tp, uint16_t *x, uint16_t *y, uint16_t
         if (strength) {
             strength[i] = tp->data.coords[i].strength;
         }
+
+        // printf( "    Get %2d %5d %5d\n", i, x[i], y[i] );
     }
     /* Invalidate */
     tp->data.points = 0;
