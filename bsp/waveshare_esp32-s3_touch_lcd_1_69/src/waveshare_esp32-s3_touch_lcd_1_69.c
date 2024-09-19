@@ -252,7 +252,7 @@ esp_err_t bsp_display_new(const bsp_display_config_t *config, esp_lcd_panel_hand
     esp_lcd_panel_mirror(*ret_panel, disp_mirror_x, disp_mirror_y);
     esp_lcd_panel_swap_xy(*ret_panel, disp_swap_xy);
     esp_lcd_panel_invert_color(*ret_panel, disp_invert_color);
-    // esp_lcd_panel_set_gap( *ret_panel, 0, 20 );
+    esp_lcd_panel_set_gap( *ret_panel, 0, 20 );
     return ret;
 
 err:
